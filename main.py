@@ -12,7 +12,7 @@ from flask_gravatar import Gravatar
 import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['SECRET_KEY'] = "sqlite:///blog.db"
 ckeditor = CKEditor(app)
 Bootstrap(app)
 login_manager = LoginManager()
