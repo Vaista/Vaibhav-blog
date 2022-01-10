@@ -9,9 +9,12 @@ from sqlalchemy.orm import relationship
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from forms import CreatePostForm, RegisterForm, LoginInForm, CommentForm
 from flask_gravatar import Gravatar
+from dotenv import load_dotenv
+import os
 
+load_dotenv('venv/.env')
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6g354fg3f4g342g4sf3g4s3f4gWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.getenv('BLOG_SECRET_KEY')
 ckeditor = CKEditor(app)
 Bootstrap(app)
 login_manager = LoginManager()
@@ -204,4 +207,4 @@ def delete_post(post_id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
