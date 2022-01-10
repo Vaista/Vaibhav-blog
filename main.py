@@ -9,10 +9,8 @@ from sqlalchemy.orm import relationship
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from forms import CreatePostForm, RegisterForm, LoginInForm, CommentForm
 from flask_gravatar import Gravatar
-from dotenv import load_dotenv
 import os
 
-load_dotenv('venv/.env')
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 ckeditor = CKEditor(app)
@@ -60,7 +58,7 @@ class Comment(db.Model):
     comments_on_blog_id = db.Column(db.Integer, db.ForeignKey("blog_posts.id"))
 
 
-# db.create_all()
+db.create_all()
 
 
 def admin_only(f):
